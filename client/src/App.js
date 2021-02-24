@@ -1,7 +1,16 @@
-import React, { Component } from 'react';
-
-export default class App extends Component {
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import PostList from './components/post-list';
+class App extends React.Component {
   render() {
-    return <p>App</p>;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path='/posts' component={PostList} />
+        </Switch>
+      </BrowserRouter>
+    );
   }
 }
+
+export default App;
