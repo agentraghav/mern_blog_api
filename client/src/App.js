@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import PostList from './components/post-list';
 import PostForm from './components/post-form';
+import PostPage from './components/post-page';
 import Header from './components/header';
 import Footer from './components/footer';
 class App extends React.Component {
@@ -13,6 +14,7 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path='/posts' component={PostList} />
+            <Route exact path='/posts/:id' component={PostPage} />
             <Route exact path='/posts/create' component={PostForm} />
           </Switch>
           <Footer />
