@@ -10,11 +10,11 @@ exports.comment_get = async (req, res) => {
 };
 
 exports.comment_post = async (req, res) => {
-  const { comment } = req.body;
-  const { id } = req.params.id;
+  const { comment, part } = req.body;
+
   const newComment = new Comment({
     comment,
-    id,
+    part,
   });
 
   try {

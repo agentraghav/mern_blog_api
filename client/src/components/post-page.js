@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 function PostPage() {
   const { id } = useParams();
   const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState();
   const [article, setArticle] = useState({});
   const getPost = async () => {
     const res = await axios.get(`http://localhost:5000/posts/${id}`);
@@ -26,7 +27,10 @@ function PostPage() {
   };
 
   const submitComment = async () => {
-    const res = await axios.post(`http://localhost:5000/comment/${id}`);
+    const res = await axios.post('http://localhost:5000/comment', {
+      comment: comment,
+      part: id,
+    });
     console.log(res);
     window.location.href = `/${id}`;
   };
@@ -58,7 +62,11 @@ function PostPage() {
           <Form onSubmit={submitComment}>
             <Form.Group controlId='Comment'>
               <Form.Label>Add Comment</Form.Label>
-              <Form.Control as='textarea' rows={3} />
+              <Form.Control
+                onChange={(e) => setComment(e.target.value)}
+                as='textarea'
+                rows={3}
+              />
             </Form.Group>
             <Button variant='primary' type='submit'>
               Submit
