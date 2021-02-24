@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { Row, Card } from 'react-bootstrap';
 function PostList() {
   const [posts, setPosts] = useState([]);
 
@@ -15,13 +15,20 @@ function PostList() {
   }, []);
 
   return (
-    <div>
+    <Row style={{ marginTop: '100px' }}>
       {posts.map((post) => (
-        <div key={post._id}>
-          <h1> {post.title} </h1>
-        </div>
+        <Card key={post._id} style={{ width: '25rem' }}>
+          <Card.Body>
+            <Card.Title>{post.title}</Card.Title>
+            <Card.Subtitle className='mb-2 text-muted'>
+              {post.createdAt}
+            </Card.Subtitle>
+            <Card.Text>{post.content}</Card.Text>
+            <Card.Link href={`/posts/${post._id}`}>Post Link</Card.Link>
+          </Card.Body>
+        </Card>
       ))}
-    </div>
+    </Row>
   );
 }
 
