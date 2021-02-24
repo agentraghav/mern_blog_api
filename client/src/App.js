@@ -10,15 +10,15 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
+        <Header />
         <Container fluid>
-          <Header />
           <Switch>
             <Route exact path='/posts' component={PostList} />
             <Route exact path='/posts/:id' component={PostPage} />
             <Route exact path='/posts/create' component={PostForm} />
           </Switch>
-          <Footer />
         </Container>
+        <Footer />
       </BrowserRouter>
     );
   }

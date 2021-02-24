@@ -1,11 +1,10 @@
 const Post = require('../models/postModel');
 
 exports.blogPost = async (req, res) => {
-  const { title, tags, content } = req.body;
+  const { title, content } = req.body;
 
   const newPost = new Post({
     title,
-    tags,
     content,
   });
 
@@ -33,5 +32,14 @@ exports.blogGetId = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: err.message });
+  }
+};
+
+exports.blogDelete = async (req, res) => {
+  try {
+    await Post.findByIdAndDelete(req.params.id);
+    return res.end();
+  } catch (err) {
+    res.status(500).json({ err });
   }
 };
