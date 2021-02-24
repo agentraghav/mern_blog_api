@@ -24,7 +24,7 @@ function PostList() {
               {post.createdAt}
             </Card.Subtitle>
             <Card.Text>{post.content}</Card.Text>
-            <Card.Link href={`/posts/${post._id}`}>Post Link</Card.Link>
+            <Card.Link href={`/post/${post._id}`}>Post Link</Card.Link>
           </Card.Body>
         </Card>
       ))}

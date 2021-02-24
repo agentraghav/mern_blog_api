@@ -17,7 +17,7 @@ function Header() {
               <li className='nav-links'>Blogs</li>
             </Link>
           </Nav>
-          <Link to='/posts/add'>
+          <Link to='/add'>
             <Button variant='outline-info'>Create</Button>
           </Link>
         </Container>
