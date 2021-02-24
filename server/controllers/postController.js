@@ -12,7 +12,7 @@ exports.blogPost = async (req, res) => {
     const savePost = await newPost.save();
     res.json(savePost);
   } catch (err) {
-    console.log(err);
+    res.status(401).json({ message: err.message });
   }
 };
 
