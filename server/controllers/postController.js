@@ -1,12 +1,12 @@
 const Post = require('../models/postModel');
 
 exports.blogPost = async (req, res) => {
-  const { title, tags, html } = req.body;
+  const { title, tags, content } = req.body;
 
   const newPost = new Post({
     title,
     tags,
-    html,
+    content,
   });
 
   try {
@@ -22,7 +22,6 @@ exports.blogGet = async (req, res) => {
   try {
     res.json(posts);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: err.message });
   }
 };
