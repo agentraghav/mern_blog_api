@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 function PostPage() {
   const { id } = useParams();
+  const [comments, setComments] = useState([]);
   const [article, setArticle] = useState({});
   const getPost = async () => {
     const res = await axios.get(`http://localhost:5000/posts/${id}`);
@@ -18,8 +19,21 @@ function PostPage() {
     window.location.href = '/';
   };
 
+  const getComments = async () => {
+    const res = await axios.get(`http://localhost:5000/comment/${id}`);
+    console.log(res);
+    setComments(res.data);
+  };
+
+  const submitComment = async () => {
+    const res = await axios.post(`http://localhost:5000/comment/${id}`);
+    console.log(res);
+    window.location.href = `/${id}`;
+  };
+
   useEffect(() => {
     getPost();
+    getComments();
   }, []);
 
   return (
@@ -40,6 +54,22 @@ function PostPage() {
         <Col md='12'>
           <h4>{article.content}</h4>
         </Col>
+        <Col md='12'>
+          <Form onSubmit={submitComment}>
+            <Form.Group controlId='Comment'>
+              <Form.Label>Add Comment</Form.Label>
+              <Form.Control as='textarea' rows={3} />
+            </Form.Group>
+            <Button variant='primary' type='submit'>
+              Submit
+            </Button>
+          </Form>
+        </Col>
+        {comments.map((val) => (
+          <Col md='12'>
+            <p>val.comment </p>
+          </Col>
+        ))}
       </Row>
     </>
   );
