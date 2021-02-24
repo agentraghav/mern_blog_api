@@ -17,3 +17,5 @@ mongoose.connect(
     if (err) return console.error(err);
   }
 );
+
+app.use('/posts', require('./routes/postRoutes'));

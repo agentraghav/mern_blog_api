@@ -1,0 +1,17 @@
+POST http://localhost:5000/posts
+Content-Type: application/json
+
+{
+    "title":"Testing 2",
+    "tags":["frontend"],
+    "html":"<h1>Nothing End</h1>"
+}
+
+
+###
+
+GET http://localhost:5000/posts
+
+
+### 
+GET http://localhost:5000/posts/6036195f7777491ef7825635
