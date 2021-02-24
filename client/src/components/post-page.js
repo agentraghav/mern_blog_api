@@ -12,6 +12,12 @@ function PostPage() {
     setArticle(res.data);
   };
 
+  const deletePost = async () => {
+    const res = await axios.delete(`http://localhost:5000/posts/${id}`);
+    console.log(res);
+    window.location.href = '/';
+  };
+
   useEffect(() => {
     getPost();
   }, []);
@@ -21,6 +27,12 @@ function PostPage() {
       <Row style={{ marginTop: '100px' }}>
         <Col md='12'>
           <h2>{article.title}</h2>
+          <span>
+            <i
+              onClick={deletePost}
+              className='fa fa-trash '
+              style={{ fontSize: '18px' }}></i>
+          </span>
         </Col>
         <Col md='12'>
           <h4>{article.createdAt}</h4>

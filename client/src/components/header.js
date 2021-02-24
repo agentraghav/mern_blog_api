@@ -13,11 +13,11 @@ function Header() {
         variant='dark'>
         <Container>
           <Nav className='justify-content-end'>
-            <Link to='/posts'>
+            <Link to='/'>
               <li className='nav-links'>Blogs</li>
             </Link>
           </Nav>
-          <Link to='/posts/create'>
+          <Link to='/posts/add'>
             <Button variant='outline-info'>Create</Button>
           </Link>
         </Container>

@@ -13,9 +13,9 @@ class App extends React.Component {
         <Header />
         <Container fluid>
           <Switch>
-            <Route exact path='/posts' component={PostList} />
-            <Route exact path='/posts/:id' component={PostPage} />
-            <Route exact path='/posts/create' component={PostForm} />
+            <Route path='/' exact component={PostList} />
+            <Route path='/:id' exact component={PostPage} />
+            <Route path='/add' v component={PostForm} />
           </Switch>
         </Container>
         <Footer />

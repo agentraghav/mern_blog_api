@@ -8,11 +8,16 @@ function PostForm() {
 
   const fillData = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:5000/posts', {
-      title: title,
-      content: content,
+    const res = await axios({
+      method: 'post',
+      url: 'http://localhost:5000/posts',
+      data: {
+        title: title,
+        content: content,
+      },
     });
     console.log(res);
+    window.location.href = '/';
   };
 
   return (
