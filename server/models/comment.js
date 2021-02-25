@@ -6,8 +6,8 @@ const commentSchema = new Schema({
   comment: {
     type: String,
   },
-  part: {
-    type: Schema.Types.ObjectId,
+  blog: {
+    type: Schema.Types.String,
     ref: 'Post',
   },
 });

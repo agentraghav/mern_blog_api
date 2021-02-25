@@ -21,7 +21,7 @@ function PostPage() {
   };
 
   const getComments = async () => {
-    const res = await axios.get(`http://localhost:5000/comment/${id}`);
+    const res = await axios.get('http://localhost:5000/comment');
     console.log(res);
     setComments(res.data);
   };
@@ -29,7 +29,7 @@ function PostPage() {
   const submitComment = async () => {
     const res = await axios.post('http://localhost:5000/comment', {
       comment: comment,
-      part: id,
+      id: id,
     });
     console.log(res);
     window.location.href = `/${id}`;
