@@ -20,16 +20,9 @@ function PostPage() {
     window.location.href = '/';
   };
 
-  const getComments = async () => {
-    const res = await axios.get('http://localhost:5000/comment');
-    console.log(res);
-    setComments(res.data);
-  };
-
   const submitComment = async () => {
-    const res = await axios.post('http://localhost:5000/comment', {
+    const res = await axios.post(`http://localhost:5000/comment/${id}`, {
       comment: comment,
-      id: id,
     });
     console.log(res);
     window.location.href = `/${id}`;
@@ -57,6 +50,13 @@ function PostPage() {
         </Col>
         <Col md='12'>
           <h4>{article.content}</h4>
+        </Col>
+        <Col md='12'>
+          {article.comments.map((com) => {
+            <div>
+              <p>{com}</p>
+            </div>;
+          })}
         </Col>
         <Col md='12'>
           <Form onSubmit={submitComment}>
