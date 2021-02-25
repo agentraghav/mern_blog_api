@@ -1,28 +1,20 @@
 const Comment = require('../models/comment');
 const Post = require('../models/postModel');
-exports.comment_get = async (req, res) => {
-  const comments = await Comment.find();
-  try {
-    res.json(comments);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
 
-exports.comment_post = async (req, res) => {
-  const { comment, id } = req.body;
+exports.comment_post = async (req, res, next) => {
+  const { comment } = req.body;
+  const { id } = req.params;
+  const post = await Post.findById(id).exec();
+  const comments = post.comments;
 
-  const post = await Post.findOne({ id: id });
-  console.log(post);
-  if (post) {
-    const newComment = new Comment({ blog: blog._id, comment: comment });
-  } else {
-    res.status(400).json({ errors: [{ message: 'Bad request.' }] });
-  }
-  try {
-    const savePost = await newComment.save();
-    res.json(savePost);
-  } catch (err) {
-    res.status(401).json({ message: err.message });
-  }
+  const newComment = new Comment({
+    comment: comment,
+  });
+
+  comments.push(newComment);
+
+  Post.findByIdAndUpdate(id, { comments }, (err, post) => {
+    if (err) return next(err);
+    res.json({ post: post });
+  });
 };
