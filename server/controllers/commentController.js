@@ -6,7 +6,6 @@ exports.comment_post = async (req, res, next) => {
   const { id } = req.params;
   const post = await Post.findById(id).exec();
   const comments = post.comments;
-
   const newComment = new Comment({
     comment: comment,
   });

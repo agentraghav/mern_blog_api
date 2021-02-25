@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 function PostPage() {
   const { id } = useParams();
-  const [comments, setComments] = useState([]);
+
   const [comment, setComment] = useState();
   const [article, setArticle] = useState({});
   const getPost = async () => {
@@ -30,7 +30,6 @@ function PostPage() {
 
   useEffect(() => {
     getPost();
-    getComments();
   }, []);
 
   return (
@@ -52,11 +51,12 @@ function PostPage() {
           <h4>{article.content}</h4>
         </Col>
         <Col md='12'>
-          {article.comments.map((com) => {
-            <div>
-              <p>{com}</p>
-            </div>;
-          })}
+          {article.comments &&
+            article.comments.map((com) => {
+              <div>
+                <p>{com}</p>
+              </div>;
+            })}
         </Col>
         <Col md='12'>
           <Form onSubmit={submitComment}>
@@ -73,11 +73,6 @@ function PostPage() {
             </Button>
           </Form>
         </Col>
-        {comments.map((val) => (
-          <Col md='12'>
-            <p>val.comment </p>
-          </Col>
-        ))}
       </Row>
     </>
   );
