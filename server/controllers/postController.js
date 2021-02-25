@@ -48,3 +48,30 @@ exports.blogDelete = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.blogUpdate = async (req, res) => {
+  const errors = validationResult(req);
+  const { id } = req.params;
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    let post = await Post.findById(id);
+
+    if (!post) {
+      return res.status(404).json({ errors: [{ msg: 'Post not found' }] });
+    }
+
+    const { title, content } = req.body;
+
+    post.title = title;
+    post.content = content;
+
+    await post.save();
+
+    res.json(post);
+  } catch (err) {
+    res.status(500).json({ errors: [{ msg: 'Server error' }] });
+  }
+};
