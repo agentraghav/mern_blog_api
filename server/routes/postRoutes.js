@@ -11,6 +11,6 @@ router.get('/:id', post_controller.blogGetId);
 
 router.delete('/:id', post_controller.blogDelete);
 
-router.post('/comment', comment_controller.comment_post);
+router.post('/comment/:id', comment_controller.comment_post);
 
 module.exports = router;
