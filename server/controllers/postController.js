@@ -32,7 +32,8 @@ exports.blogGet = async (req, res) => {
 };
 
 exports.blogGetId = async (req, res) => {
-  const post = await Post.findById(req.params.id);
+  const { id } = req.params;
+  const post = await Post.findById(id);
   try {
     res.json(post);
   } catch (err) {
@@ -41,8 +42,9 @@ exports.blogGetId = async (req, res) => {
 };
 
 exports.blogDelete = async (req, res) => {
+  const { id } = req.params;
   try {
-    await Post.findByIdAndDelete(req.params.id);
+    await Post.findByIdAndDelete(id);
     return res.status(200).json({ message: 'Successfully deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
