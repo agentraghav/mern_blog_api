@@ -1,7 +1,13 @@
+const { validationResult } = require('express-validator');
 const Post = require('../models/postModel');
 
 exports.blogPost = async (req, res) => {
   const { title, content } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
   const newPost = new Post({
     title,
@@ -30,7 +36,6 @@ exports.blogGetId = async (req, res) => {
   try {
     res.json(post);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -38,8 +43,8 @@ exports.blogGetId = async (req, res) => {
 exports.blogDelete = async (req, res) => {
   try {
     await Post.findByIdAndDelete(req.params.id);
-    return res.end();
+    return res.status(200).json({ message: 'Successfully deleted' });
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ message: err.message });
   }
 };
