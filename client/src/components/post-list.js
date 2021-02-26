@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
+
 import { Row, Card } from 'react-bootstrap';
+
 function PostList() {
   const [posts, setPosts] = useState([]);
 

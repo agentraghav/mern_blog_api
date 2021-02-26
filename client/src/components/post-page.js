@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
+
 import { Row, Col, Form, Button } from 'react-bootstrap';
+
 import { useParams } from 'react-router-dom';
 
 function PostPage() {
