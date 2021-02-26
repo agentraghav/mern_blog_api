@@ -9,22 +9,21 @@ function PostPage() {
   const [comment, setComment] = useState();
   const [article, setArticle] = useState({});
   const getPost = async () => {
-    const res = await axios.get(`http://localhost:5000/posts/${id}`);
+    const res = await axios.get(process.env.POST_URL);
 
     setArticle(res.data);
   };
 
   const deletePost = async () => {
-    const res = await axios.delete(`http://localhost:5000/posts/${id}`);
-    console.log(res);
+    const res = await axios.delete(process.env.POST_URL);
     window.location.href = '/';
   };
 
   const submitComment = async () => {
-    const res = await axios.post(`http://localhost:5000/comment/${id}`, {
+    const res = await axios.post(process.env.COMMENT_URL, {
       comment: comment,
     });
-    console.log(res);
+
     window.location.href = `/${id}`;
   };
 

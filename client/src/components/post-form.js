@@ -10,13 +10,12 @@ function PostForm() {
     e.preventDefault();
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:5000/posts',
+      url: process.env.FILL_DATA_URL,
       data: {
         title: title,
         content: content,
       },
     });
-    console.log(res);
     window.location.href = '/';
   };
 

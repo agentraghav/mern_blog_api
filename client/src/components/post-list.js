@@ -6,12 +6,11 @@ function PostList() {
 
   useEffect(() => {
     async function getData() {
-      let res = await axios.get('http://localhost:5000/posts/');
+      let res = await axios.get(process.env.POSTS_URL);
       const data = res.data;
       setPosts(data);
     }
     getData();
-    console.log(posts);
   }, []);
 
   return (
