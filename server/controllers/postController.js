@@ -27,7 +27,7 @@ exports.blogGet = async (req, res) => {
   try {
     res.json(posts);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
@@ -37,7 +37,7 @@ exports.blogGetId = async (req, res) => {
   try {
     res.json(post);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
@@ -47,7 +47,7 @@ exports.blogDelete = async (req, res) => {
     await Post.findByIdAndDelete(id);
     return res.status(200).json({ message: 'Successfully deleted' });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
@@ -74,6 +74,6 @@ exports.blogUpdate = async (req, res) => {
 
     res.json(post);
   } catch (err) {
-    res.status(500).json({ errors: [{ msg: 'Server error' }] });
+    res.status(400).json({ errors: [{ msg: 'Server error' }] });
   }
 };
